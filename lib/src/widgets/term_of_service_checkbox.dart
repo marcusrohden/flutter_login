@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/src/models/term_of_service.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class TermCheckbox extends StatefulWidget {
   final TermOfService termOfService;
@@ -24,36 +23,11 @@ class _TermCheckboxState extends State<TermCheckbox> {
         widget.termOfService.checked = value ?? false;
       },
       initialValue: widget.termOfService.initialValue,
-      title: widget.termOfService.linkUrl != null
-          ? InkWell(
-              onTap: () {
-                launchUrl(Uri.parse(widget.termOfService.linkUrl!));
-              },
-              child: Row(
-                children: [
-                  Flexible(
-                    child: Text(
-                      widget.termOfService.text,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Icon(
-                      Icons.open_in_new,
-                      color: Theme.of(context).textTheme.bodyMedium!.color,
-                      size: Theme.of(context).textTheme.bodyMedium!.fontSize,
-                    ),
-                  )
-                ],
-              ),
-            )
-          : Text(
-              widget.termOfService.text,
-              style: Theme.of(context).textTheme.bodyMedium,
-              textAlign: TextAlign.left,
-            ),
+      title: Text(
+        widget.termOfService.text,
+        style: Theme.of(context).textTheme.bodyMedium,
+        textAlign: TextAlign.left,
+      ),
       validator: (bool? value) {
         if (widget.validation &&
             widget.termOfService.mandatory &&

@@ -7,7 +7,6 @@ import 'package:flutter_login/src/widgets/term_of_service_checkbox.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:phone_numbers_parser/phone_numbers_parser.dart' as pnp;
-import 'package:url_launcher/url_launcher.dart';
 
 enum TextFieldInertiaDirection {
   left,
@@ -40,7 +39,6 @@ class AnimatedTextFormField extends StatefulWidget {
     this.inertiaDirection,
     this.enabled = true,
     this.labelText,
-    this.linkUrl,
     this.prefixIcon,
     this.suffixIcon,
     this.keyboardType,
@@ -69,7 +67,7 @@ class AnimatedTextFormField extends StatefulWidget {
   final bool autocorrect;
   final Iterable<String>? autofillHints;
   final String? labelText;
-  final String? linkUrl;
+
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
@@ -331,36 +329,11 @@ class _AnimatedTextFormFieldState extends State<AnimatedTextFormField> {
           widget.onSaved?.call((value ?? false).toString());
           widget.controller?.text = (value ?? false).toString();
         },
-        title: widget.linkUrl != null
-            ? InkWell(
-                onTap: () {
-                  launchUrl(Uri.parse(widget.linkUrl!));
-                },
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        widget.labelText ?? '',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Icon(
-                        Icons.open_in_new,
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
-                        size: Theme.of(context).textTheme.bodyMedium!.fontSize,
-                      ),
-                    )
-                  ],
-                ),
-              )
-            : Text(
-                widget.labelText ?? '',
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.left,
-              ),
+        title: Text(
+          widget.labelText ?? '',
+          style: Theme.of(context).textTheme.bodyMedium,
+          textAlign: TextAlign.left,
+        ),
       );
     } else {
       inputField = TextFormField(

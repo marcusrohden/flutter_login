@@ -98,7 +98,6 @@ class LoginScreen extends StatelessWidget {
           id: 'general-term',
           mandatory: true,
           text: 'Term of services',
-          linkUrl: 'https://github.com/NearHuscarl/flutter_login',
         ),
       ],
       additionalSignupFields: [

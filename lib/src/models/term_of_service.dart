@@ -2,7 +2,7 @@ class TermOfService {
   String id;
   bool mandatory;
   String text;
-  String? linkUrl;
+
   String validationErrorMessage;
   bool initialValue;
   bool checked = false;
@@ -10,7 +10,6 @@ class TermOfService {
     required this.id,
     required this.mandatory,
     required this.text,
-    this.linkUrl,
     this.initialValue = false,
     this.validationErrorMessage = 'Required',
   }) {
